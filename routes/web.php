@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\Backend\AdminController;
+// use App\Http\Controllers\Backend\VendorController;
 use App\Http\Controllers\ProfileController;
+
 use Illuminate\Support\Facades\Route;
+
+// use App\Http\Middleware\UserAccessDashboardMiddleware;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,4 +22,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//Admin Routes
+// Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->middleware('auth','verified', UserAccessDashboardMiddleware::class)->name('admin.dashboard');
+
+// //Vendor Routes
+// Route::get('vendor/dashboard', [VendorController::class, 'dashboard'])->middleware('auth','verified', UserAccessDashboardMiddleware::class)->name('vendor.dashboard');
+
 require __DIR__.'/auth.php';
+
+
+Route::get('admin/login', [AdminController::class, 'login'])->name('admin.login');
